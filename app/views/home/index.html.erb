@@ -1,0 +1,119 @@
+<table style = "font-size:80%" class = "table  table-striped table-sm table-hover table-bordered text-center" >
+  <tr>
+    <td></td>
+    <% @techs.each do |t| %>
+        <th><%= t.name %></th>
+    <% end %>
+  </tr>
+
+  <% @hours.zip(@tech_1, @tech_2, @tech_3, @tech_4) do |h, t1, t2, t3, t4| %>
+    <tr class ="active">
+      <td><%= h %></td>
+
+      <td>
+        <% if t1.length() == 1 %>
+        <% new_id = "t1_" + h.to_s %>
+        <button type="button" id= <%= new_id %> class="btn btn-secondary btn-sm" onclick="pop(this)">
+          Open Entry
+        </button>
+
+        <div class="card" id= <%= "box_" +new_id %> style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Empty Slot!</h5>
+            <p class="card-text">Difference between previous and next appointment: <%= t1[0].to_time.strftime("%H Hours %M Minutes") %></p>
+            <button type="button" id= <%= new_id %> class="btn btn-secondary btn-sm" onclick="pop(this)">Close</button>
+          </div>
+        </div>
+
+
+        <% else %>
+          <% t1.each do |t| %>
+              <%= t %><br>
+          <% end %>
+        <% end %>
+      </td>
+
+      <td>
+        <% if t2.length() == 1 %>
+        <% new_id = "t2_" + h.to_s %>
+        <button type="button" id= <%= new_id %> class="btn btn-secondary btn-sm" onclick="pop(this)">
+          Open Entry
+        </button>
+
+        <div class="card" id= <%= "box_" +new_id %> style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Empty Slot!</h5>
+            <p class="card-text">Difference between previous and next appointment: <%= t2[0].to_time.strftime("%H Hours %M Minutes") %></p>
+            <button type="button" id= <%= new_id %> class="btn btn-secondary btn-sm" onclick="pop(this)">Close</button>
+          </div>
+        </div>
+        <% else %>
+          <% t2.each do |t| %>
+              <%= t %><br>
+          <% end %>
+        <% end %>
+      </td>
+
+      <td>
+        <% if t3.length() == 1 %>
+        <% new_id = "t3_" + h.to_s %>
+
+        <button type="button" id= <%= new_id %> class="btn btn-secondary btn-sm" onclick="pop(this)">
+          Open Entry
+        </button>
+
+        <div class="card" id= <%= "box_" +new_id %> style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Empty Slot!</h5>
+            <p class="card-text">Difference between previous and next appointment: <%= t3[0].to_time.strftime("%H Hours %M Minutes") %></p>
+            <button type="button" id= <%= new_id %> class="btn btn-secondary btn-sm" onclick="pop(this)">Close</button>
+          </div>
+        </div>
+        <% else %>
+          <% t3.each do |t| %>
+              <%= t %><br>
+          <% end %>
+        <% end %>
+      </td>
+
+
+      <td>
+        <% if t4.length() == 1 %>
+        <% new_id = "t4_" + h.to_s %>
+        <button type="button" id= <%= new_id %> class="btn btn-secondary btn-sm" onclick="pop(this)">
+          Open Entry
+        </button>
+
+        <div class="card" id= <%= "box_" +new_id %> style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Empty Slot!</h5>
+            <p class="card-text">Difference between previous and next appointment: <%= t4[0].to_time.strftime("%H Hours %M Minutes") %></p>
+            <button type="button" id= <%= new_id %> class="btn btn-secondary btn-sm" onclick="pop(this)">Close</button>
+          </div>
+        </div>
+        <% else %>
+          <% t4.each do |t| %>
+              <%= t %><br>
+          <% end %>
+        <% end %>
+      </td>
+
+    </tr>
+  <% end %>
+
+</table>
+
+<script>
+  var modal = null
+   function pop(div) {
+     selected_id = div.id
+     console.log(selected_id)
+     if(modal === null) {
+       document.getElementById("box_" + selected_id).style.display = "block";
+       modal = true
+     } else {
+       document.getElementById("box_" + selected_id).style.display = "none";
+       modal = null
+     }
+   }
+</script>
