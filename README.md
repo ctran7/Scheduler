@@ -22,4 +22,8 @@ When a user clicks the button, a pop up window will appear showing how much time
 ## Problems during Project
 Initially there were issues with how the database and how the tables would be structured and connected. Tables of work orders, locations and technicians are linked together by foreign keys of their corresponding id. In the controller, they are joined so that the data spanning across tables can be used for further manipulation. There were also issues with time and how time would be viewed. Initially, the field was stored as a string, but the string compoment complicated manipulation and calculating time differences. The time zone could impact how the difference was calculated so measures were created to make sure each time was in the same time zone.
 ## Future Improvements
-Future improvements including a user sign up page so a technician could add a work_order to the calender. If future appointments occur in the same cell, it would display all appointments or render an error as one technician most likely could not finish multiple work orders in an hour. Instead of a pop up window, clicking the button would link to a new page where more details about the work order can be read or added to. Another improvement is to allow appointments to be canceled. 
+- [ ] a user sign up page so a technician could add a work_order to the calender 
+- [ ] display all appointments (if there are multiple appoinements in one cell) or render an error as one technician most likely could not finish multiple work orders in an hour
+- [ ] clicking the button would link to a new page where more details about the work order can be read or added to 
+- [ ] allow appointments to be canceled
+- [ ] create a different page where people can sign up for a work order appointment and synchronize between customer and technicians
