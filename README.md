@@ -3,16 +3,14 @@
 This project is a scheduling grid for technicians and work orders. This project uses three different databases include one about work orders, locations, and technician data. It is then manipulated to create the scheduling grid. 
 How to run
 
-- [x] Clone git repo
-- [x] cd to lib/tasks
-- [x] rake csv_import:location_data 
-- [x] rake csv_import:technician_data
-- [x] rake csv_import:work_orders_data
-- [x] rails db:migrate
-- [x] rails s
+      Clone git repo
+      cd to lib/tasks
+      rake csv_import:location_data 
+      rake csv_import:technician_data
+      rake csv_import:work_orders_data
+      rails db:migrate
+      rails s
 
-> We're living the future so
-> the present is our past.
 
 
 Designing
