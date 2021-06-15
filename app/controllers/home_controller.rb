@@ -2,24 +2,21 @@ require "Time"
 class HomeController < ApplicationController
 
   def index
-    @times = WorkOrder.select("time").order("time ASC")
-    @techs = Technician.select("name")
+    @times = WorkOrder.select("time").order("time ASC").all
+    @techs = Technician.select("name").all
     @work_orders = WorkOrder.includes(:location).includes(:technician).all
-    beginning = @times[0].time[0,2].to_i
-    ending = @times[-1].time[0,2].to_i
+    beginning = @times[0].time.strftime("%H").to_i
+    ending = @times[-1].time.strftime("%H").to_i + 1
     @hours = (beginning..ending).to_a.map { |num| num.to_s + ":00" }
-    size = @times[-1].time[0,2].to_i - @times[0].time[0,2].to_i + 1
-
-
-    @br = ["0","123"]
+    size = ending - beginning + 1
+    @ending_hour = Time.new(2000, 01, 01, ending, 0, 0, "+00:00")
 
     @tech_1 = Array.new(size) { Array.new() }
     @tech_2 = Array.new(size) { Array.new() }
     @tech_3 = Array.new(size) { Array.new() }
     @tech_4 = Array.new(size) { Array.new() }
     @work_orders.each do |t|
-        puts t.class
-        i = t.time[0,2].to_i - beginning
+        i = t.time.strftime("%H").to_i - beginning
         tech_id = t.technician_id
         case tech_id
         when 1
@@ -71,16 +68,13 @@ class HomeController < ApplicationController
           #puts n.to_s + " " + len.to_s
             while current_tech[n].empty?
               if n == len-1
-                puts "no more orders for the day"
                 return "N/A"
               end
               n +=1
             end
           diff = Time.at(current_tech[n][2].to_time - @times[0].time.to_time).utc.strftime("%H:%M:%S")
-          puts "empty at " + i.to_s + " but difference between the next order: " + diff.to_s
           return diff.to_s
         else
-          puts "no more orders for the day"
           return "N/A"
         end
     end
@@ -90,20 +84,15 @@ class HomeController < ApplicationController
       if n < len-1
           while current_tech[n].empty?
             if n == len-1
-              puts "NEED TO FIX"
-              diff = Time.at(@times[-1].time.to_time - prev_wo).utc.strftime("%H:%M:%S")
-              puts "empty at " + i.to_s + " but difference between the next order: " + diff.to_s
+              diff = Time.at(@ending_hour  - prev_wo).utc.strftime("%H:%M:%S")
               return diff.to_s
             end
             n +=1
           end
         diff = Time.at(current_tech[n][2].to_time - prev_wo).utc.strftime("%H:%M:%S")
-        puts "empty at " + i.to_s + " but difference between the next order: " + diff.to_s
         return diff.to_s
       else
-        puts "NEED TO FIX"
-        diff = Time.at(@times[-1].time.to_time - prev_wo).utc.strftime("%H:%M:%S")
-        puts "empty at " + i.to_s + " but difference between the next order: " + diff.to_s
+        diff = Time.at(@ending_hour  - prev_wo).utc.strftime("%H:%M:%S")
         return diff.to_s
       end
 
