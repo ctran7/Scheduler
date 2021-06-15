@@ -10,6 +10,7 @@ How to run
       rake csv_import:work_orders_data
       rails db:migrate
       rails s
+      go to 127.0.0.1:3000/
 
 
 
