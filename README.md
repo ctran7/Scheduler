@@ -11,6 +11,9 @@ How to run
 - [x] rails db:migrate
 - [x] rails s
 
+> We're living the future so
+> the present is our past.
+
 
 Designing
 This scheduling grid cannot be structured in terms of a regular table. The Y Axis is time starting from the earlier hour the work orders start from to the latest hour the work orders start from. The X Axis are the different technicians. In each cell, there is information about a corresponding work order including location city, name, starting hour time and price of the work order. If the cell has no work order, users are allowed to click on a button showing how much time between the previous and next work order. If there has not been a previous order, the calculations use the overall earliest work hour hour. If there has not been a next order, the calculations use the latest possible hour which is 1 hour more than the latest work order.
