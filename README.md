@@ -3,7 +3,7 @@
 This project is a scheduling grid for technicians and work orders. This project uses three different databases include one about work orders, locations, and technician data. It is then manipulated to create the scheduling grid. 
 How to run
 
-      Clone git repo
+      Clone git repo: git clone git@github.com:ctran7/Scheduler.git
       cd to lib/tasks
       rake csv_import:location_data 
       rake csv_import:technician_data
